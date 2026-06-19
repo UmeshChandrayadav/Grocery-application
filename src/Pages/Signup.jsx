@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // ✅ import Link
+import { useNavigate, Link } from "react-router-dom";
 import toast from 'react-hot-toast'
 import axios from "axios";
 
@@ -30,7 +30,7 @@ const Signup = () => {
 
     try {
       const alreadyExists = await axios.get(
-        `http://localhost:3000/users?email=${email}`
+        `http://10.124.148.213:3000/users?email=${email}`
       );
 
       if (alreadyExists.data.length > 0) {
@@ -38,7 +38,7 @@ const Signup = () => {
         return;
       }
 
-      const result = await axios.post("http://localhost:3000/users", {
+      const result = await axios.post(`${import.meta.env.VITE_API_URL}/users`, {
         name,
         email,
         password,
@@ -65,16 +65,16 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-200">
+    <div className="min-h-screen flex items-center justify-center bg-green-200 px-4 sm:px-6 md:px-8 lg:px-12">
       <form
         onSubmit={handleSubmit}
-        className="bg-white w-full max-w-sm p-8 rounded-xl shadow-lg"
+        className="bg-white w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl p-5 sm:p-6 md:p-8 lg:p-10 rounded-xl shadow-lg"
       >
-        <h2 className="text-3xl font-bold text-center text-green-700 mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-green-700 mb-5 sm:mb-6 md:mb-8">
           Sign Up
         </h2>
 
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <input
             type="text"
             name="name"
@@ -82,11 +82,11 @@ const Signup = () => {
             placeholder="Enter your name"
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
 
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <input
             type="email"
             name="email"
@@ -94,11 +94,11 @@ const Signup = () => {
             placeholder="Enter your email"
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
 
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <input
             type="password"
             name="password"
@@ -106,11 +106,11 @@ const Signup = () => {
             placeholder="Enter your password"
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
 
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <input
             type="password"
             name="confirmpassword"
@@ -118,16 +118,16 @@ const Signup = () => {
             placeholder="Confirm your password"
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-5 sm:mb-6">
           <select
             name="role"
             value={role}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
           >
             <option value="user">user</option>
             <option value="admin">admin</option>
@@ -136,14 +136,14 @@ const Signup = () => {
 
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+          className="w-full bg-green-600 text-white py-2 sm:py-3 md:py-3.5 rounded-lg text-sm sm:text-base md:text-lg font-semibold hover:bg-green-700 transition-colors"
         >
           Create Account
         </button>
 
-        <p className="text-center text-sm text-gray-500 mt-6">
+        <p className="text-center text-xs sm:text-sm md:text-base text-gray-500 mt-4 sm:mt-6">
           Already have an account?{" "}
-          <Link to="/login" className="text-green-600 hover:underline"> {/* ✅ Link instead of <a> */}
+          <Link to="/login" className="text-green-600 hover:underline">
             Login
           </Link>
         </p>

@@ -10,7 +10,7 @@ const Layout = () => {
       <Header />
       <Navbar />
 
-      <main className="flex-growp-4">
+      <main className="flex-grow p-3 sm:p-4 md:p-6 lg:p-8">
         <Outlet />
       </main>
 

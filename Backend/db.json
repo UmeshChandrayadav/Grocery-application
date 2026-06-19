@@ -39,6 +39,22 @@
       "password": "chotu123",
       "confirmpassword": "chotu123",
       "role": "user"
+    },
+    {
+      "id": "ac9e",
+      "name": "Umesh",
+      "email": "umesh@gmail.com",
+      "password": "vijay123",
+      "confirmpassword": "vijay123",
+      "role": "user"
+    },
+    {
+      "id": "5f28",
+      "name": "Vijay",
+      "email": "vijay1@gmail.com",
+      "password": "vijay123",
+      "confirmpassword": "vijay123",
+      "role": "user"
     }
   ],
   "products": [

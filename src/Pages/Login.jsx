@@ -36,15 +36,13 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // ✅ FIX: Only filter by email & password — check role on client side
-      const url = `http://localhost:3000/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+      const url = `${import.meta.env.VITE_API_URL}/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
 
       const response = await axios.get(url);
 
       if (response.data && response.data.length > 0) {
         const user = response.data[0];
 
-        // ✅ FIX: Validate role on client side
         if (user.role !== role) {
           toast.error(`This account is not registered as "${role}"`);
           setLoading(false);
@@ -54,7 +52,6 @@ const Login = () => {
         login(user);
         toast.success("Login successful!");
 
-        // Navigate based on role
         if (user.role === "admin") {
           navigate("/admin");
         } else {
@@ -83,47 +80,47 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-200">
+    <div className="min-h-screen flex items-center justify-center bg-green-200 px-4 sm:px-6 md:px-8">
       <form
         onSubmit={handleSubmit}
-        className="bg-white w-full max-w-sm p-8 rounded-xl shadow-lg"
+        className="bg-white w-full max-w-sm sm:max-w-md md:max-w-lg p-6 sm:p-8 md:p-10 rounded-xl shadow-lg"
       >
-        <h2 className="text-3xl font-bold text-center text-green-700 mb-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-green-700 mb-6 sm:mb-8">
           Login
         </h2>
 
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter your email"
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500"
             required
             autoComplete="email"
           />
         </div>
 
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
             placeholder="Enter your password"
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500"
             required
             autoComplete="current-password"
           />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-5 sm:mb-6">
           <select
             name="role"
             value={formData.role}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
           >
             <option value="user">user</option>
             <option value="admin">admin</option>
@@ -133,7 +130,7 @@ const Login = () => {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors
+          className={`w-full py-2 sm:py-3 px-4 rounded-lg text-sm sm:text-base font-semibold text-white transition-colors
             ${
               loading
                 ? "bg-green-400 cursor-not-allowed"
@@ -143,7 +140,7 @@ const Login = () => {
           {loading ? "Logging in..." : "Login"}
         </button>
 
-        <p className="text-center text-sm text-gray-500 mt-6">
+        <p className="text-center text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6">
           Don't have an account?{" "}
           <Link to="/signup" className="text-green-600 hover:underline">
             Sign up

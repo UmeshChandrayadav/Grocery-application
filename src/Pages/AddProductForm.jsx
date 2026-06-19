@@ -11,7 +11,6 @@ const AddProductForm = () => {
 
   const [loading, setLoading] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -19,7 +18,6 @@ const AddProductForm = () => {
     });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, price, image } = formData;
@@ -32,14 +30,12 @@ const AddProductForm = () => {
     setLoading(true);
 
     try {
-      // Auto-generate ID using timestamp or random number
       const newProduct = {
-        id: Date.now().toString(), // simple auto-generated ID
+        id: Date.now().toString(),
         ...formData,
       };
 
-      // Replace URL with your API endpoint
-      await axios.post("http://localhost:3000/products", newProduct);
+      await axios.post(`${import.meta.env.VITE_API_URL}/products`, newProduct);
 
       toast.success("Product added successfully!");
       setFormData({
@@ -56,58 +52,58 @@ const AddProductForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-50">
+    <div className="min-h-screen flex items-center justify-center bg-green-50 px-4 sm:px-6 md:px-8 lg:px-12 py-6">
       <form
         onSubmit={handleSubmit}
-        className="bg-white w-full max-w-md p-8 rounded-xl shadow-lg"
+        className="bg-white w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl p-5 sm:p-6 md:p-8 lg:p-10 rounded-xl shadow-lg"
       >
-        <h2 className="text-3xl font-bold text-center text-green-700 mb-8">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-green-700 mb-5 sm:mb-6 md:mb-8">
           Add New Product
         </h2>
 
         {/* Name */}
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
             placeholder="Product Name"
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
         </div>
 
         {/* Price */}
-        <div className="mb-5">
+        <div className="mb-4 sm:mb-5">
           <input
             type="number"
             name="price"
             value={formData.price}
             onChange={handleChange}
             placeholder="Price"
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             required
           />
         </div>
 
         {/* Image URL */}
-        <div className="mb-6">
+        <div className="mb-5 sm:mb-6">
           <input
             type="text"
             name="image"
             value={formData.image}
             onChange={handleChange}
             placeholder="Image URL (optional)"
-            className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
 
-        {/* Submit Button */}
+        {/* Button */}
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-3 px-4 rounded-lg font-semibold text-white transition-colors ${
+          className={`w-full py-2 sm:py-3 md:py-3.5 rounded-lg text-sm sm:text-base md:text-lg font-semibold text-white transition-colors ${
             loading
               ? "bg-green-400 cursor-not-allowed"
               : "bg-green-600 hover:bg-green-700"

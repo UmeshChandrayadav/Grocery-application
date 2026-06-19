@@ -1,4 +1,3 @@
-// src/Components/Admin/UpdateProductForm.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -13,9 +12,8 @@ const UpdateProductForm = () => {
   });
 
   useEffect(() => {
-    // Load all products for dropdown
     axios
-      .get("http://localhost:3000/products")
+      .get(`${import.meta.env.VITE_API_URL}/products`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -39,9 +37,8 @@ const UpdateProductForm = () => {
     }
 
     try {
-      await axios.put(`http://localhost:3000/products/${selectedProductId}`, updatedProduct);
+      await axios.put(`${import.meta.env.VITE_API_URL}/products/${selectedProductId}`, updatedProduct);
       toast.success("Product updated successfully");
-      // Optional: reset form
       setSelectedProductId("");
       setUpdatedProduct({ name: "", price: "", image: "" });
     } catch (error) {
@@ -51,9 +48,10 @@ const UpdateProductForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-50 p-4">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
-        <h2 className="text-3xl font-bold text-green-700 mb-6 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-green-50 px-4 sm:px-6 md:px-8 lg:px-12 py-6">
+      <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-white rounded-xl shadow-lg p-5 sm:p-6 md:p-8">
+        
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-green-700 mb-5 sm:mb-6 text-center">
           Update Product
         </h2>
 
@@ -61,7 +59,7 @@ const UpdateProductForm = () => {
         <select
           value={selectedProductId}
           onChange={handleSelect}
-          className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 mb-5 sm:mb-6 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500"
         >
           <option value="">Select a product</option>
           {products.map((p) => (
@@ -73,37 +71,39 @@ const UpdateProductForm = () => {
 
         {/* Update Form */}
         {selectedProductId && (
-          <form onSubmit={handleUpdate} className="space-y-4">
+          <form onSubmit={handleUpdate} className="space-y-3 sm:space-y-4">
             <input
               type="text"
               name="name"
               value={updatedProduct.name}
               onChange={handleChange}
               placeholder="Product Name"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
+
             <input
               type="number"
               name="price"
               value={updatedProduct.price}
               onChange={handleChange}
               placeholder="Price"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
+
             <input
               type="text"
               name="image"
               value={updatedProduct.image}
               onChange={handleChange}
               placeholder="Image URL"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full border border-gray-300 rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500"
             />
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              className="w-full bg-blue-600 text-white py-2 sm:py-3 rounded-lg text-sm sm:text-base md:text-lg font-semibold hover:bg-blue-700 transition-colors"
             >
               Update Product
             </button>

@@ -21,7 +21,7 @@ const Shop = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/products")
+      .get(`${import.meta.env.VITE_API_URL}/products`)
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -51,51 +51,65 @@ const Shop = () => {
       }
     }
 
-    // Add product to cart
     addToCart({ ...selectedProduct, quantity: 1 });
 
     toast.success("Order placed successfully 🎉");
     setOrderPlaced(true);
 
-    // Store in localStorage for order page
     localStorage.setItem("currentOrder", JSON.stringify({ ...selectedProduct, quantity: 1 }));
   };
 
   if (orderPlaced) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="bg-white p-8 rounded shadow text-center">
-          <h2 className="text-2xl font-bold text-green-600 mb-2">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+        <div className="bg-white p-6 sm:p-8 md:p-10 rounded shadow text-center max-w-sm sm:max-w-md">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600 mb-2">
             Order Placed Successfully 🎉
           </h2>
-          <p>Payment Method: {paymentMethod}</p>
-          <p className="mt-2 font-semibold">Total Amount: ₹{total}</p>
+          <p className="text-sm sm:text-base">Payment Method: {paymentMethod}</p>
+          <p className="mt-2 font-semibold text-base sm:text-lg">
+            Total Amount: ₹{total}
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen py-10 px-4">
-      <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
+    <div className="bg-gray-100 min-h-screen py-8 sm:py-10 px-3 sm:px-4 md:px-6 lg:px-10">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8">
+        Our Products
+      </h2>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
         {products.map((product) => (
-          <div key={product.id} className="bg-white rounded shadow p-4 text-center">
+          <div
+            key={product.id}
+            className="bg-white rounded-lg shadow-md p-3 sm:p-4 text-center hover:shadow-lg transition"
+          >
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-40 object-cover mb-3 rounded"
+              className="w-full h-32 sm:h-40 md:h-44 object-cover mb-2 sm:mb-3 rounded"
             />
-            <h3 className="font-bold text-lg">{product.name}</h3>
-            <p className="text-green-600 font-semibold">₹{product.price}</p>
+
+            <h3 className="font-semibold text-base sm:text-lg md:text-xl line-clamp-1">
+              {product.name}
+            </h3>
+
+            <p className="text-green-600 font-semibold text-sm sm:text-base md:text-lg mt-1">
+              ₹{product.price}
+            </p>
 
             {/* Payment options */}
-            <div className="mt-3">
+            <div className="mt-3 space-y-2">
               <select
                 value={paymentMethod}
-                onChange={(e) => { setPaymentMethod(e.target.value); setSelectedProduct(product); }}
-                className="w-full border px-3 py-2 rounded mb-2"
+                onChange={(e) => {
+                  setPaymentMethod(e.target.value);
+                  setSelectedProduct(product);
+                }}
+                className="w-full border px-3 py-2 rounded text-sm sm:text-base"
               >
                 <option value="">Select Payment Method</option>
                 <option value="Cash">Cash</option>
@@ -109,7 +123,7 @@ const Shop = () => {
                   placeholder="Enter UPI ID"
                   value={upiId}
                   onChange={(e) => setUpiId(e.target.value)}
-                  className="w-full border px-3 py-2 rounded mb-2"
+                  className="w-full border px-3 py-2 rounded text-sm sm:text-base"
                 />
               )}
 
@@ -119,22 +133,28 @@ const Shop = () => {
                     type="text"
                     placeholder="Card Number"
                     value={cardDetails.cardNumber}
-                    onChange={(e) => setCardDetails({ ...cardDetails, cardNumber: e.target.value })}
-                    className="w-full border px-3 py-2 rounded"
+                    onChange={(e) =>
+                      setCardDetails({ ...cardDetails, cardNumber: e.target.value })
+                    }
+                    className="w-full border px-3 py-2 rounded text-sm sm:text-base"
                   />
                   <input
                     type="text"
                     placeholder="Expiry MM/YY"
                     value={cardDetails.expiry}
-                    onChange={(e) => setCardDetails({ ...cardDetails, expiry: e.target.value })}
-                    className="w-full border px-3 py-2 rounded"
+                    onChange={(e) =>
+                      setCardDetails({ ...cardDetails, expiry: e.target.value })
+                    }
+                    className="w-full border px-3 py-2 rounded text-sm sm:text-base"
                   />
                   <input
                     type="text"
                     placeholder="CVV"
                     value={cardDetails.cvv}
-                    onChange={(e) => setCardDetails({ ...cardDetails, cvv: e.target.value })}
-                    className="w-full border px-3 py-2 rounded"
+                    onChange={(e) =>
+                      setCardDetails({ ...cardDetails, cvv: e.target.value })
+                    }
+                    className="w-full border px-3 py-2 rounded text-sm sm:text-base"
                   />
                 </div>
               )}
@@ -142,7 +162,7 @@ const Shop = () => {
 
             <button
               onClick={() => handleOrder()}
-              className="mt-2 w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+              className="mt-3 w-full bg-green-600 text-white px-3 py-2 sm:py-2.5 rounded text-sm sm:text-base hover:bg-green-700 transition"
             >
               Place Order
             </button>

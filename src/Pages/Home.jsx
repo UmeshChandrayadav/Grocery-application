@@ -8,15 +8,19 @@ const Home = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="bg-green-600 text-white text-center py-20">
-        <h1 className="text-4xl font-bold mb-4">Fresh Groceries Delivered</h1>
-        <p className="mb-6">Buy fresh vegetables, fruits & daily essentials</p>
+      <section className="bg-green-600 text-white text-center py-12 sm:py-16 md:py-20 px-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+          Fresh Groceries Delivered
+        </h1>
+        <p className="mb-6 text-sm sm:text-base">
+          Buy fresh vegetables, fruits & daily essentials
+        </p>
 
         {/* Only show Shop Now for users */}
         {!isAdmin && (
           <Link
             to="/shop"
-            className="bg-white text-green-600 px-6 py-3 rounded font-semibold"
+            className="bg-white text-green-600 px-5 py-2.5 sm:px-6 sm:py-3 rounded font-semibold text-sm sm:text-base inline-block"
           >
             Shop Now
           </Link>
@@ -24,37 +28,51 @@ const Home = () => {
       </section>
 
       {/* Category Cards (common for both users/admin) */}
-      <section className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg shadow p-4 text-center">
-          <h3 className="font-bold text-lg">Vegetables</h3>
-          <img
-            src="/src/assets/vegetables.webp"
-            // alt="Vegetables"
-            className="w-full h-62 object-cover rounded mb-3"
-          />
-          <p className="text-green-600">Up to 30% OFF</p>
-        </div>
+      {/* Offers Section */}
+<section className="max-w-6xl mx-auto px-4 py-10">
 
-        <div className="bg-white rounded-lg shadow p-4 text-center">
-          <h3 className="font-bold text-lg">Dairy</h3>
-          <img
-            src="/src/assets/Dairy.avif"
-            // alt="Vegetables"
-            className="w-full h-62 object-cover rounded mb-3"
-          />
-          <p className="text-green-600">Flat 15% OFF</p>
-        </div>
+  {/* Title */}
+  <h1 className="text-3xl sm:text-4xl font-bold text-center mb-10">
+    <span className="bg-emerald-100 text-emerald-700 px-6 py-2 rounded-xl shadow-sm">
+      Offers
+    </span>
+  </h1>
 
-        <div className="bg-white rounded-lg shadow p-4 text-center">
-          <h3 className="font-bold text-lg">Fruits</h3>
-          <img
-            src="/src/assets/fruits.webp"
-            // alt="Vegetables"
-            className="w-full h-42 object-cover rounded mb-3"
-          />
-          <p className="text-green-600">Flat 15% OFF</p>
-        </div>
-      </section>
+  {/* Cards Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    {/* Card 1 */}
+    <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-4 text-center">
+      <h3 className="font-bold text-lg mb-2">Vegetables</h3>
+      <img
+        src="/src/assets/vegetables.webp"
+        className="w-full h-44 object-cover rounded-lg mb-3"
+      />
+      <p className="text-green-600 font-semibold">Up to 30% OFF</p>
+    </div>
+
+    {/* Card 2 */}
+    <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-4 text-center">
+      <h3 className="font-bold text-lg mb-2">Dairy</h3>
+      <img
+        src="/src/assets/Dairy.avif"
+        className="w-full h-44 object-cover rounded-lg mb-3"
+      />
+      <p className="text-green-600 font-semibold">Flat 15% OFF</p>
+    </div>
+
+    {/* Card 3 */}
+    <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-4 text-center">
+      <h3 className="font-bold text-lg mb-2">Fruits</h3>
+      <img
+        src="/src/assets/fruits.webp"
+        className="w-full h-44 object-cover rounded-lg mb-3"
+      />
+      <p className="text-green-600 font-semibold">Flat 15% OFF</p>
+    </div>
+
+  </div>
+</section>
 
       {/* Admin Actions Section */}
       {/* {isAdmin && (
