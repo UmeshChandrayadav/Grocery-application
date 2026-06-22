@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import vegetables from "../assets/vegetables.webp";
+import fruits from "../assets/fruits.webp";
+import dairy  from "../assets/Dairy.avif";
 
 const Home = () => {
   const { isAdmin } = useAuth();
@@ -45,7 +48,7 @@ const Home = () => {
     <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-4 text-center">
       <h3 className="font-bold text-lg mb-2">Vegetables</h3>
       <img
-        src="/src/assets/vegetables.webp"
+        src={vegetables}
         className="w-full h-44 object-cover rounded-lg mb-3"
       />
       <p className="text-green-600 font-semibold">Up to 30% OFF</p>
@@ -55,7 +58,7 @@ const Home = () => {
     <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-4 text-center">
       <h3 className="font-bold text-lg mb-2">Dairy</h3>
       <img
-        src="/src/assets/Dairy.avif"
+        src={dairy}
         className="w-full h-44 object-cover rounded-lg mb-3"
       />
       <p className="text-green-600 font-semibold">Flat 15% OFF</p>
@@ -65,7 +68,7 @@ const Home = () => {
     <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-4 text-center">
       <h3 className="font-bold text-lg mb-2">Fruits</h3>
       <img
-        src="/src/assets/fruits.webp"
+        src={fruits}
         className="w-full h-44 object-cover rounded-lg mb-3"
       />
       <p className="text-green-600 font-semibold">Flat 15% OFF</p>
