@@ -1,0 +1,135 @@
+{
+  "users": [
+    {
+      "id": "5656",
+      "name": "Raj",
+      "email": "UdhyaSuriyan1999@gmail.com",
+      "password": "raja@0112",
+      "confirmpassword": "raja@0112",
+      "role": "user"
+    },
+    {
+      "id": "6d03",
+      "name": "Hanshitha",
+      "email": "hanshithaselva2025@gmail.com",
+      "password": "hansi@25",
+      "confirmpassword": "hansi@25",
+      "role": "user"
+    },
+    {
+      "id": "cb64",
+      "name": "karthick",
+      "email": "karthickmani01122003@gmail.com",
+      "password": "karthick@2003",
+      "confirmpassword": "karthick@2003",
+      "role": "user"
+    },
+    {
+      "id": "f06a",
+      "name": "vijay",
+      "email": "vijay@gmail.com",
+      "password": "vijay2004",
+      "confirmpassword": "vijay2004",
+      "role": "admin"
+    },
+    {
+      "id": "a107",
+      "name": "chotu",
+      "email": "chotu@gmail.com",
+      "password": "chotu123",
+      "confirmpassword": "chotu123",
+      "role": "user"
+    },
+    {
+      "id": "ac9e",
+      "name": "Umesh",
+      "email": "umesh@gmail.com",
+      "password": "vijay123",
+      "confirmpassword": "vijay123",
+      "role": "user"
+    },
+    {
+      "id": "5f28",
+      "name": "Vijay",
+      "email": "vijay1@gmail.com",
+      "password": "vijay123",
+      "confirmpassword": "vijay123",
+      "role": "user"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Rice",
+      "price": 60,
+      "image": "https://static.vecteezy.com/system/resources/previews/030/354/034/non_2x/white-rice-in-sack-ai-generated-photo.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Milk",
+      "price": 30,
+      "image": "https://wallpapercave.com/wp/wp2034326.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Eggs",
+      "price": 6,
+      "image": "https://static.vecteezy.com/system/resources/thumbnails/022/679/469/small_2x/closeup-eggs-in-wooden-basket-generative-ai-photo.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Vegetables",
+      "price": 40,
+      "image": "https://img.freepik.com/free-photo/healthy-vegetables-wooden-table_1150-38014.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Apple",
+      "price": 100,
+      "image": "https://images2.alphacoders.com/719/thumb-1920-719435.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Good Day",
+      "price": 20,
+      "image": "https://tse3.mm.bing.net/th/id/OIP.Oa6LceDlCvlY3mDNg0ujsgHaEl?pid=Api&P=0&h=180"
+    },
+    {
+      "id": "7",
+      "name": "Tea",
+      "price": 10,
+      "image": "https://media.istockphoto.com/id/1254668550/photo/ice-coffee-in-a-tall-glass-with-cream-poured-over-and-coffee-beans-on-a-light-stone.jpg?s=612x612&w=is&k=20&c=dDNPvZaIDC_s1kXQJu49OzBs5jiarsUn2zbJyVl2dAQ="
+    },
+    {
+      "id": "8",
+      "name": "Horlicks",
+      "price": 120,
+      "image": "http://maharajastores.com.au/wp-content/uploads/2023/09/292370535_8110343752316896_5884430764316049964_n-1024x899.jpg"
+    },
+    {
+      "id": "9",
+      "name": "Boost",
+      "price": 110,
+      "image": "https://cdn01.pharmeasy.in/dam/products_otc/I04920/boost-nutrition-drink-jar-of-200-g-3-1669655000.jpg"
+    },
+    {
+      "id": "10",
+      "name": "7up",
+      "price": 35,
+      "image": "https://mir-s3-cdn-cf.behance.net/projects/404/ce29b699168285.Y3JvcCw4OTIsNjk4LDQ2OCww.png"
+    },
+    {
+      "id": "11",
+      "name": "Campa",
+      "price": 30,
+      "image": "https://images.filmibeat.com/ta/img/2026/01/ajith21-1768634405.jpg"
+    },
+    {
+      "id": "12",
+      "name": "Dairy Milk",
+      "price": 30,
+      "image": "https://2.bp.blogspot.com/-DBql0D0w7O4/V-TMsf-l4hI/AAAAAAAAAl8/w_wuaCK0uqU2NgFYWTjauFAswR_C5pB6gCLcB/s400/Cadbury-Dairy-Milk-HD-Wallpapers.jpg"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
