@@ -30,11 +30,7 @@ const Signup = () => {
 
     try {
       const alreadyExists = await axios.get(
-<<<<<<< HEAD
         `${import.meta.env.VITE_API_URL}/users?email=${email}`
-=======
-        `http://10.124.148.213:3000/users?email=${email}`
->>>>>>> 8f22ec6243ea26d4cd729ba5ffaceb4446628e5f
       );
 
       if (alreadyExists.data.length > 0) {
