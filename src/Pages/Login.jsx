@@ -23,61 +23,53 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const { email, password, role } = formData;
+  const { email, password, role } = formData;
 
-    if (!email || !password) {
-      toast.error("Email and password are required");
+  if (!email || !password) {
+    toast.error("Email and Password are required");
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/users?email=${encodeURIComponent(email)}`
+    );
+
+    if (response.data.length === 0) {
+      toast.error("User not found");
       return;
     }
 
-    setLoading(true);
+    const user = response.data[0];
 
-    try {
-      const url = `${import.meta.env.VITE_API_URL}/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
-
-      const response = await axios.get(url);
-
-      if (response.data && response.data.length > 0) {
-        const user = response.data[0];
-
-        if (user.role !== role) {
-          toast.error(`This account is not registered as "${role}"`);
-          setLoading(false);
-          return;
-        }
-
-        login(user);
-        toast.success("Login successful!");
-
-        if (user.role === "admin") {
-          navigate("/admin");
-        } else {
-          navigate("/");
-        }
-      } else {
-        toast.error("Invalid email or password");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-
-      if (error.response) {
-        if (error.response.status === 404) {
-          toast.error("Database endpoint not found (check json-server)");
-        } else {
-          toast.error(`Server error: ${error.response.status}`);
-        }
-      } else if (error.request) {
-        toast.error("Cannot reach server. Is json-server running on port 3000?");
-      } else {
-        toast.error("Something went wrong during login");
-      }
-    } finally {
-      setLoading(false);
+    if (user.password !== password) {
+      toast.error("Invalid password");
+      return;
     }
-  };
+
+    if (user.role !== role) {
+      toast.error(`Please login as ${user.role}`);
+      return;
+    }
+
+    login(user);
+
+    toast.success("Login successful!");
+
+    navigate(user.role === "admin" ? "/admin" : "/");
+
+  } catch (err) {
+    console.error(err);
+    toast.error("Unable to connect to server");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-green-200 px-4 sm:px-6 md:px-8">
